@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>webStorage</title>
+</head>
+<body>
+	<p id="paras"></p>
+	<h1>Session Storage</h1>
+	<table border="1">
+		<tr><td>Price</td><td>Name of Item</td><td>Color of Item</td><td>Shipping Adddress</td></tr>
+		<tr><td>N150,000</td><td>Chess Board</td><td>Sand</td><td>50 Zik Ave</td></tr>
+		<tr><td colspan="2"><button onclick="addItems()">Save Item</button></td><td colspan="2"><button onclick="clearItems()">Clear Item</button></td></tr>
+	</table>
+	<br /><br />
+	<fieldset style="width: 15%">
+		<legend>Form</legend>
+		<form>
+		<input id="fn" type="text" name="" placeholder="firstname" /><br />
+		<input id="ln" type="text" name="" placeholder="lastname" /><br />
+
+		<button onclick="save2()">Save</button><button onclick="Delete2()">Delete</button>
+		</form>
+</fieldset>
+
+	
+<script>
+	//setItem to set item
+	//getItem to fetch item
+	/*sessionStorage.setItem("firstname", "John");
+	sessionStorage.setItem("lastname", "Emeka");
+	document.getElementById('paras').innerHTML = sessionStorage.getItem("firstname");
+	sessionStorage.removeItem("firstname");
+	*/
+</script>
+<script>
+	function addItems(){
+		sessionStorage.setItem("Price", "N150, 000");
+		sessionStorage.setItem("Item", "Chess Board");
+		sessionStorage.setItem("Color", "Sand");
+		sessionStorage.setItem("Shipping Adddress", "50 zik Ave");
+	}
+	
+	function clearItems(){
+		sessionStorage.clear();
+	}
+</script>
+<script>
+	function save2(){
+		var fName = document.getElementById("fn").value;
+		var lName = document.getElementById("ln").value;
+		localStorage.setItem("firstname", fName);
+		localStorage.setItem("lastname", lName);
+	}
+	function Delete2(){
+		localStorage.clear();
+	}
+</script>
+</body>
+</html>
