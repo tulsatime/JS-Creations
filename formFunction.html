@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css creations/formFunction.css">
+	<title></title>
+</head>
+<body id="body">
+	<fieldset id="f1">
+		<legend>Customer Order Form</legend>
+		<form oninput="x.value = parseInt(item.value)* parseInt(quantity.value)">
+			<table width="100%" cellpadding="10">
+				<tr>
+					<td width="20%"><label>Select Item</label></td>
+					<td width="30%"><select onchange="firstFunc(event)" id="select">
+						<option selected="selected" disabled="disabled">Choose from here</option>
+						<option value="25000" name="Shoe">Shoe</option>
+						<option value="7500" name="Perfume">Perfume</option>
+						<option value="4000" name="T-Shirt">T-Shirt</option>
+						<option value="30000" name="Wrist Watch">Wrist Watch</option>
+						<option value="7000" name="Wallet">Wallet</option></select></td>
+					<td width="30%"><label>Unit Price(N)</label></td>
+					<td width="20%"><input type="text" id="item"></td>
+				</tr>
+				<tr>
+					<td width="20%"><label>Select Quantity</label></td>
+					<td width="30%"><input type="number" id="quantity" min="1" step="1"></td>
+					<td width="30%"><label>Amount(VAT not included)</label></td>
+					<td width="20%">N<output id="x"></output></td>
+				</tr>
+				<tr><td>VAT = 10%</td>
+					<td><input type="button" value="Order" onclick="msgPrompt()" id="order"></td>
+					<td colspan="2"><p id="displayMsg"></p><input id="displayMsg2" type="button" onclick="magic.fillForm()" value="Procede to payment" />
+</td>
+				</tr>
+					
+
+			</table>
+			
+		</form>
+	</fieldset>
+	<fieldset id="f2">
+		<form>
+			Name:<br /><input type="text" name="" placeholder="Firstname">&nbsp;&nbsp;&nbsp;
+			<input type="text" name="" placeholder="Lastname">
+			<br /><br />
+			Address:<br />
+			<input type="text" name="" placeholder="Enter your address" size="47"><br /><br />
+			Tel:<br />
+			<input type="text" name="" placeholder="Enter your phone number"><br><br />
+			<table cellspacing="0">
+				<tr><td>Item of purchase:</td><td>Amount:</td></tr>
+				<tr><td><input type="text" name="" id="purchaseItem" disabled="disabled"></td>
+					<td>&nbsp;&nbsp;<input type="text" name="" id="amount" disabled="disabled"></td></tr>
+			</table>
+			<br />
+			Select payment method:<br />
+			<input type="text" name="" list="list">
+			<datalist id="list">
+				<option value="cash-on-delivery">
+				<option value="Cheque">
+				<option value="Bank Draft">
+				<option value="Debit Card">
+				<option value="Credit Card">
+				<option value="Bank USSD Code">
+				<option value="Or you want am free?">				
+			</datalist>
+			<br /><br />
+			<input type="button" value="Continue" class="bt btn1" onclick="magic.submit()" />
+			<input type="button" value="Cancel" class="bt btn2" onclick="magic.cancel()" />
+		</form>
+	</fieldset>
+	
+
+
+	<script>
+		function firstFunc(z){
+			document.getElementById('item').value = z.target.value;
+		}
+	</script>
+	<script>
+		function msgPrompt(){
+			var x = parseInt(item.value)* parseInt(quantity.value);
+			var y = eval(0.1*x);
+			var TotalCost = parseInt(x)+ parseInt(y);
+			var Quantity = document.getElementById("quantity").value;
+			var Item = document.getElementById("select").options[document.getElementById("select").selectedIndex].text;
+			document.getElementById("displayMsg").innerHTML = ("You have selected"+" "+ Quantity +" "+Item+"(s) at a total amount of N"+TotalCost+" "+"(VAT included)");
+			document.getElementById("displayMsg2").style.opacity = 1;
+			document.getElementById("amount").value = ("N"+TotalCost);
+			document.getElementById("purchaseItem").value = Quantity+" "+Item+"(s)";
+		}
+	</script>
+	<script>
+		var magic = {
+			fillForm: function(){
+				document.getElementById("f2").style.opacity = 1;
+				document.getElementById("f2").style.zIndex = 1;
+				document.getElementById("f1").style.zIndex = -1;
+				document.getElementById("f1").style.opacity = 0.3;
+				document.getElementById("body").style.backgroundColor = "gray";
+			},
+			cancel: function(){
+				document.getElementById("f2").style.opacity = 0;
+				document.getElementById("f2").style.zIndex = -1;
+				document.getElementById("f1").style.zIndex = 1;
+				document.getElementById("f1").style.opacity = 1;
+				document.getElementById("body").style.backgroundColor = "white";
+			},
+			submit: function(){
+				document.getElementById("f2").style.opacity = 0;
+				document.getElementById("f2").style.zIndex = -1;
+				document.getElementById("f1").style.zIndex = 1;
+				document.getElementById("f1").style.opacity = 1;
+				document.getElementById("body").style.backgroundColor = "white";
+				alert("Thanks for shopping with us!");
+			}
+				
+		}
+
+		
+
+	</script>
+
+</body>
+</html>
