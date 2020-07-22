@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		div:not(.sub){
+			width: 200px; height: 200px; border: 1px solid black;
+			float: left; margin: 10px;
+			position: relative;
+			background-color: red;
+
+		}
+		.sub{
+			width: 150px; height: 150px; border-radius: 100%;
+			background-color: green;
+			position: absolute;
+			left: 50%; top: 50%;
+			transform: translate(-50%, -50%);
+			color: red;
+			font-size: 150px;
+			cursor: pointer;
+		}
+		span{
+			position: absolute; left: 50%; top: 50%;
+			transform: translate(-50%, -50%);
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div ondragover="dragOver(event)" ondrop="drop(event)">
+		<div class="sub" id="sub" ondragstart="drag(event)"></div>	
+	</div>
+	<div ondragover="dragOver(event)" ondrop="drop(event)">
+		<div class="sub" id="sub2" ondragstart="drag(event)"></div>	
+	</div>
+	<div ondragover="dragOver(event)" ondrop="drop(event)"></div>
+	
+	<div ondragover="dragOver(event)" ondrop="drop(event)"></div>
+
+	<script>
+		var Pin;
+		function drag(ev){
+			Pin = ev.target.id;
+		}
+		function dragOver(ev){
+			ev.preventDefault();
+		}
+		function drop(ev){
+			ev.target.append(document.getElementById(Pin));
+		}
+	</script>
+</body>
+</html>
